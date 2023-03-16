@@ -4,3 +4,4 @@
 
 vim.opt.mouse = ""
 vim.opt.backspace = { "start", "eol", "indent" } -- Enable 'Backspace' key in insert mode
+vim.opt.timeoutlen = 500

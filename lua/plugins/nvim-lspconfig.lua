@@ -16,7 +16,7 @@ return {
     },
 
     -- Automatically format on save
-    -- autoformat = false,
+    autoformat = false,
 
     -- make sure mason installs the server
     servers = {

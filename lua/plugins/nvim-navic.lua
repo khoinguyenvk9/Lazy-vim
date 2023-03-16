@@ -1,5 +1,6 @@
 return {
   "SmiteshP/nvim-navic",
+  enabled = false,
   opts = function()
     return {
       -- icons = require("lazyvim.config").icons.kinds,
