@@ -1,14 +1,28 @@
 local Util = require("lazyvim.util")
 local Actions = require("telescope.actions")
+local layout_config = {
+  width = 0.9,
+  preview_cutoff = 120,
+  preview_width = 0.6,
+}
 
 return {
   "nvim-telescope/telescope.nvim",
   keys = {
     -- new
-    { "<C-p>", Util.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
-    { "<C-l>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-    { "<leader>gd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-    { "<leader>/", Util.telescope("live_grep", { cwd = false }), desc = "Find in Files (Grep)" },
+    {
+      "<C-p>",
+      Util.telescope("files", { cwd = false, layout_config = layout_config }),
+      desc = "Find Files (root dir)",
+    },
+    -- { "<C-l>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { layout_config = layout_config }, desc = "Buffer" },
+    { "<C-l>", Util.telescope("current_buffer_fuzzy_find", { layout_config = layout_config }) },
+    -- { "<leader>gd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+    {
+      "<leader>/",
+      Util.telescope("live_grep", { cwd = false, layout_config = layout_config }),
+      desc = "Find in Files (Grep)",
+    },
 
     -- disables default mappings
     { "<leader>,", false },
@@ -27,13 +41,14 @@ return {
   },
   opts = {
     defaults = {
-      layout_config = {
-        width = 0.9,
-        preview_cutoff = 120,
-        preview_width = 0.6,
-      },
+      -- layout_config = {
+      --   width = 0.9,
+      --   preview_cutoff = 120,
+      --   preview_width = 0.6,
+      -- },
       mappings = {
         i = {
+          ["<c-t>"] = Actions.select_tab,
           ["<C-j>"] = Actions.move_selection_next,
           ["<C-k>"] = Actions.move_selection_previous,
         },
